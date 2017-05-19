@@ -15,7 +15,7 @@
     "grunt-contrib-watch": "~0.6.1",
     "grunt-filerev": "~2.1.0",
     "grunt-ngdocs": "~0.2.5",
-    "grunt-ng-annotate": "~0.4.0",
+    "grunt-ng-annotate": "~1.0.1",
     "grunt-string-replace": "^1.0.0",
     "grunt-usemin": "~2.4.0"
   }
