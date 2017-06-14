@@ -1,0 +1,43 @@
+{
+  "name": "adf-widget-travis",
+  "version": "0.1.0",
+  "main": [
+    "dist/adf-widget-travis.js",
+    "dist/adf-widget-travis.css"
+  ],
+  "ignore": [
+    "bower.json",
+    ".bowerrc",
+    ".jshintrc",
+    ".gitignore",
+    "gulpfile.js",
+    "node_modules",
+    "package.json",
+    "components",
+    "src"
+  ],
+  "keywords": [
+    "dashboard",
+    "widget",
+    "adf",
+    "adf-widget",
+    "travis",
+    "ci",
+    "build"
+  ],
+  "description": "Build history from Travis CI",
+  "dependencies": {
+    "angular-dashboard-framework": "^0.11.0",
+    "angular-md5": "^0.1.10"
+  },
+  "devDependencies": {
+    "angular-local-storage": "0.1.5"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css"
+      ]
+    }
+  }
+}

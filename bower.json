@@ -1,42 +1,55 @@
 {
   "name": "angular-dashboard-framework",
-  "version": "0.6.1",
+  "version": "0.12.0",
+  "license": "MIT",
+  "authors": [
+    "Sebastian Sdorra"
+  ],
   "main": [
-    "dist/angular-dashboard-framework.min.js",
-    "dist/angular-dashboard-framework.min.css"
+    "dist/angular-dashboard-framework-tpls.js",
+    "dist/angular-dashboard-framework.css"
   ],
   "ignore": [
-    "bower.json",
-    ".bowerrc",
-    ".gitignore",
-    "Gruntfile.js",
+    ".git",
+    ".tmp",
+    "dist/docs",
+    "dist/reports",
+    "dist/sample",
     "node_modules",
-    "package.json",
     "sample",
     "src",
-    ".tmp",
-    "dist/docs"
+    "test",
+    ".bowerrc",
+    ".editorconfig",
+    ".gitignore",
+    ".gitmodules",
+    ".jshintrc",
+    ".travis.yml",
+    "bower.json",
+    "gulpfile.js",
+    "package.json"
+  ],
+  "keywords": [
+    "dashboard",
+    "angular",
+    "bootstrap",
+    "widgets",
+    "adf"
   ],
   "dependencies": {
-    "angular": "1.2.26",
+    "angular": ">=1.2",
     "angular-bootstrap": "~0.11.0",
-    "jquery": "~1.10.0",
-    "jquery-ui": "~1.10.4",
-    "angular-ui-sortable": "0.13.0",
-    "bootstrap": "~3.1"
+    "bootstrap": "~3.1",
+    "Sortable": "1.2.1"
   },
   "devDependencies": {
-    "angular-mocks": "1.2.26",
-    "angular-scenario": "1.2.26",
-    "angular-route": "1.2.26",
-    "angular-local-storage": "0.0.1",
-    "json3": "~3.2.4",
-    "es5-shim": "~2.0.8",
-    "angular-markdown-directive": "~0.1.0",
-    "highcharts-ng": "0.0.6",
-    "highcharts": "4.0.3"
+    "angular-mocks": ">=1.2",
+    "angular-scenario": ">=1.2",
+    "angular-route": ">=1.2",
+    "angular-local-storage": "0.1.5",
+    "es5-shim": "~2.0.8"
   },
   "resolutions": {
-    "angular": "1.2.26"
+    "angular": ">=1.2"
   }
 }
