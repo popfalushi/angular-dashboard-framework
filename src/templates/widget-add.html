@@ -5,8 +5,8 @@
 <div class="modal-body">
   <!-- dashboard categories enabled -->
   <div ng-if="createCategories">
-    <uib-accordion ng-init="categorized = createCategories(widgets)">
-      <uib-accordion-group heading="{{category.name}}" ng-repeat="category in categorized | adfOrderByObjectKey: 'name'">
+    <accordion ng-init="categorized = createCategories(widgets)">
+      <accordion-group heading="{{category.name}}" ng-repeat="category in categorized | adfOrderByObjectKey: 'name'">
         <dl class="dl-horizontal">
           <dt ng-repeat-start="widget in category | adfOrderByObjectKey: 'key'">
             <a href="" ng-click="addWidget(key)">
@@ -17,8 +17,8 @@
             {{widget.description}}
           </dd>
         </dl>
-      </uib-accordion-group>
-    </uib-accordion>
+      </accordion-group>
+    </accordion>
   </div>
   <!-- dashboard categories disabled -->
   <div style="display: inline-block;" ng-if="!createCategories">
