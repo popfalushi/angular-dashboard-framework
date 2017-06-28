@@ -370,6 +370,10 @@ angular.module('adf')
           $rootScope.$broadcast('adfDashboardEditsCancelled');
         };
 
+        $scope.$on('adfToggleEditDialog', function() {
+            $scope.editDashboardDialog();
+        });
+
         // edit dashboard settings
         $scope.editDashboardDialog = function(){
           var editDashboardScope = getNewModalScope();

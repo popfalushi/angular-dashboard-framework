@@ -29,7 +29,7 @@ angular.module('adf', ['adf.provider', 'adf.locale', 'ui.bootstrap'])
   .value('adfTemplatePath', '../src/templates/')
   .value('rowTemplate', '<adf-dashboard-row row="row" adf-model="adfModel" options="options" edit-mode="editMode" ng-repeat="row in column.rows" />')
   .value('columnTemplate', '<adf-dashboard-column column="column" adf-model="adfModel" options="options" edit-mode="editMode" ng-repeat="column in row.columns" />')
-  .value('adfVersion', '0.12.0');
+  .value('adfVersion', '0.12.3');
 
 /*
  * The MIT License
@@ -87,7 +87,7 @@ angular.module('adf.locale', [])
 /* global angular */
 angular.module('adf')
   .directive('adfDashboardColumn', ["$log", "$compile", "$rootScope", "adfTemplatePath", "rowTemplate", "dashboard", function ($log, $compile, $rootScope, adfTemplatePath, rowTemplate, dashboard) {
-
+    
 
     /**
      * moves a widget in between a column
@@ -303,7 +303,7 @@ angular.module('adf')
 
 angular.module('adf')
   .directive('adfDashboard', ["$rootScope", "$log", "$timeout", "$modal", "dashboard", "adfTemplatePath", function ($rootScope, $log, $timeout, $modal, dashboard, adfTemplatePath) {
-
+    
 
     function stringToBoolean(string){
       switch(angular.isDefined(string) ? string.toLowerCase() : null){
@@ -624,6 +624,10 @@ angular.module('adf')
           $rootScope.$broadcast('adfDashboardEditsCancelled');
         };
 
+        $scope.$on('adfToggleEditDialog', function() {
+            $scope.editDashboardDialog();
+        });
+
         // edit dashboard settings
         $scope.editDashboardDialog = function(){
           var editDashboardScope = getNewModalScope();
@@ -859,7 +863,7 @@ angular.module('adf.locale')
 /* global angular */
 angular.module('adf')
   .filter('adfOrderByObjectKey', ["$filter", function($filter) {
-
+    
 
     return function(item, key){
       var array = [];
@@ -1258,7 +1262,7 @@ angular.module('adf.provider', ['adf.locale'])
 /* global angular */
 angular.module('adf')
   .directive('adfDashboardRow', ["$compile", "adfTemplatePath", "columnTemplate", function ($compile, adfTemplatePath, columnTemplate) {
-
+    
 
     return {
       restrict: 'E',
@@ -1521,7 +1525,7 @@ angular.module('adf')
  */
 angular.module('adf')
   .factory('widgetService', ["$http", "$q", "$sce", "$templateCache", "dashboard", function($http, $q, $sce, $templateCache, dashboard) {
-
+    
 
     function parseUrl(url) {
       var parsedUrl = url;
