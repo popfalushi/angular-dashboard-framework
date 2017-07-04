@@ -258,7 +258,8 @@ angular.module('adf')
         col: '=column',
         editMode: '=',
         options: '=',
-        widgetState: '='
+        widgetState: '=',
+        adfModel: '='
       },
       controller: function($scope) {
 
