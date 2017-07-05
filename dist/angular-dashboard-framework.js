@@ -29,7 +29,7 @@ angular.module('adf', ['adf.provider', 'adf.locale', 'ui.bootstrap'])
   .value('adfTemplatePath', '../src/templates/')
   .value('rowTemplate', '<adf-dashboard-row row="row" adf-model="adfModel" options="options" edit-mode="editMode" ng-repeat="row in column.rows" />')
   .value('columnTemplate', '<adf-dashboard-column column="column" adf-model="adfModel" options="options" edit-mode="editMode" ng-repeat="column in row.columns" />')
-  .value('adfVersion', '0.12.6');
+  .value('adfVersion', '0.12.7');
 
 /*
  * The MIT License
@@ -299,6 +299,7 @@ angular.module('adf')
  * @param {boolean=} continuousEditMode enable continuous edit mode, to fire add/change/remove
  *                   events during edit mode not reset it if edit mode is exited.
  * @param {boolean=} categories enable categories for the add widget dialog.
+ * @param {number=} maxWidgetsCount for dashboard
  */
 
 angular.module('adf')
@@ -544,7 +545,8 @@ angular.module('adf')
                 maximizable: '@',
                 adfModel: '=',
                 adfWidgetFilter: '=',
-                categories: '@'
+                categories: '@',
+                maxWidgetsCount: '=?'
             },
             controller: ["$scope", function ($scope) {
                 var model = {};
@@ -552,6 +554,8 @@ angular.module('adf')
                 var widgetFilter = null;
                 var structureName = {};
                 var name = $scope.name;
+
+                $scope.isMaximumWidgetsCount = false;
 
                 // Watching for changes on adfModel
                 $scope.$watch('adfModel', function (oldVal, newVal) {
@@ -579,6 +583,20 @@ angular.module('adf')
                                 model.titleTemplateUrl = adfTemplatePath + 'dashboard-title.html';
                             }
                             $scope.model = model;
+
+                            $scope.isMaximumWidgetsCount = function() {
+                                var widgetsCount = 0;
+
+                                model.rows.forEach(function(row){
+                                    row.columns.forEach(function(column){
+                                        column.widgets.forEach(function(){
+                                            widgetsCount++;
+                                        });
+                                    });
+                                });
+
+                                return  widgetsCount >= $scope.maxWidgetsCount;
+                            }();
                         } else {
                             $log.error('could not find or create model');
                         }

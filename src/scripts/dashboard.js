@@ -45,6 +45,7 @@
  * @param {boolean=} continuousEditMode enable continuous edit mode, to fire add/change/remove
  *                   events during edit mode not reset it if edit mode is exited.
  * @param {boolean=} categories enable categories for the add widget dialog.
+ * @param {number=} maxWidgetsCount for dashboard
  */
 
 angular.module('adf')
@@ -290,7 +291,8 @@ angular.module('adf')
                 maximizable: '@',
                 adfModel: '=',
                 adfWidgetFilter: '=',
-                categories: '@'
+                categories: '@',
+                maxWidgetsCount: '=?'
             },
             controller: function ($scope) {
                 var model = {};
@@ -298,6 +300,8 @@ angular.module('adf')
                 var widgetFilter = null;
                 var structureName = {};
                 var name = $scope.name;
+
+                $scope.isMaximumWidgetsCount = false;
 
                 // Watching for changes on adfModel
                 $scope.$watch('adfModel', function (oldVal, newVal) {
@@ -325,6 +329,20 @@ angular.module('adf')
                                 model.titleTemplateUrl = adfTemplatePath + 'dashboard-title.html';
                             }
                             $scope.model = model;
+
+                            $scope.isMaximumWidgetsCount = function() {
+                                var widgetsCount = 0;
+
+                                model.rows.forEach(function(row){
+                                    row.columns.forEach(function(column){
+                                        column.widgets.forEach(function(){
+                                            widgetsCount++;
+                                        });
+                                    });
+                                });
+
+                                return  widgetsCount >= $scope.maxWidgetsCount;
+                            }();
                         } else {
                             $log.error('could not find or create model');
                         }
