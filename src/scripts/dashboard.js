@@ -401,6 +401,14 @@ angular.module('adf')
                     $scope.editDashboardDialog();
                 });
 
+                $scope.$on('adfStructureChanged', function(event, name, structure, dashboard) {
+                    dashboard = dashboard || model;
+                    changeStructure(dashboard, structure);
+                    if (dashboard.structure !== name) {
+                        dashboard.structure = name;
+                    }
+                });
+
                 // edit dashboard settings
                 $scope.editDashboardDialog = function () {
                     var editDashboardScope = getNewModalScope();
